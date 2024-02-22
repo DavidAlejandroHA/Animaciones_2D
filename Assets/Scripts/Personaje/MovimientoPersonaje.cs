@@ -9,6 +9,8 @@ public class MovimientoPersonaje : MonoBehaviour
     private float fuerzaSalto = 16f;
     private bool mirandoHaciaDerecha = true;
 
+    public Animator animator;
+
     [SerializeField] Rigidbody2D rb;
     [SerializeField] Transform colisionesSuelo;
     [SerializeField] LayerMask mascaraSuelo;
@@ -34,6 +36,7 @@ public class MovimientoPersonaje : MonoBehaviour
         }
         
         comprobarCambioLado();
+        establecerAnimaciones();
     }
 
     private void FixedUpdate()
@@ -55,5 +58,11 @@ public class MovimientoPersonaje : MonoBehaviour
             localScale.x = -localScale.x;
             transform.localScale = localScale;
         }
+    }
+
+    private void establecerAnimaciones()
+    {
+        animator.SetFloat("VelY", rb.velocity.y);
+        animator.SetBool("VelX", rb.velocity.y != 0f);
     }
 }
