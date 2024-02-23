@@ -90,4 +90,6 @@ public class MovimientoPersonaje : MonoBehaviour
             (rb.velocity.x >= 0.1f || rb.velocity.x <= -0.1f));
         animator.SetBool("Saltando", saltando);
     }
+
+    
 }
