@@ -305,7 +305,7 @@ GameObject:
   - component: {fileID: 352864548}
   - component: {fileID: 352864550}
   - component: {fileID: 352864551}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ColisionesGoomba
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2160,7 +2160,7 @@ GameObject:
   - component: {fileID: 1665449116}
   - component: {fileID: 1665449120}
   - component: {fileID: 1665449121}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Goomba
   m_TagString: EnemigoSalto
   m_Icon: {fileID: 0}
