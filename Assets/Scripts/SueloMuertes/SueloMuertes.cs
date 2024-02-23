@@ -16,11 +16,11 @@ public class SueloMuertes : MonoBehaviour
         
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.tag == "Player")
         {
-
+            GameManager.Instance.terminarJuego();
         }
     }
 }
