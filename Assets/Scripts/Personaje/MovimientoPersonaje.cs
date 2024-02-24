@@ -13,7 +13,6 @@ public class MovimientoPersonaje : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     public Animator animator;
-    bool chafado = false;
 
     [SerializeField] Rigidbody2D rb;
     [SerializeField] Transform colisionesSuelo;
@@ -79,7 +78,6 @@ public class MovimientoPersonaje : MonoBehaviour
 
     public void chafar()
     {
-        chafado = true;
         animator.SetLayerWeight(0, 0f);
         animator.SetLayerWeight(1, 1f);
     }
