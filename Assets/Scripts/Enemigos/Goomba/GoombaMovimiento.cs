@@ -5,8 +5,10 @@ using UnityEngine;
 public class GoombaMovimiento : MonoBehaviour
 {
     [SerializeField] GameObject goomba;
+    [SerializeField] GameObject goombaColisionParedes;
     bool mirandoIzquierda = true;
     Rigidbody2D rb;
+    BoxCollider2D boxC;
     public Animator animator;
     public float velocidad = 2f;
 
@@ -15,6 +17,7 @@ public class GoombaMovimiento : MonoBehaviour
     void Start()
     {
         rb = goomba.GetComponent<Rigidbody2D>();
+        boxC = goomba.GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -35,7 +38,7 @@ public class GoombaMovimiento : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        bool colisionaSaltoEnemigo = false;
+        //bool colisionaSaltoEnemigo = false;
 
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -45,6 +48,14 @@ public class GoombaMovimiento : MonoBehaviour
                 {
                     animator.SetBool("Muerte", true);
                     muerto = true;
+                    collision.gameObject.GetComponent<MovimientoPersonaje>().impulsarSalto(15f);
+                    boxC.enabled = false;
+                    goombaColisionParedes.GetComponent<BoxCollider2D>().enabled = false;
+                }
+
+                if (contact.normal.x == -1f || contact.normal.x == 1f)
+                {
+                    collision.gameObject.GetComponent<MovimientoPersonaje>().animarDanio();
                 }
             }
         }

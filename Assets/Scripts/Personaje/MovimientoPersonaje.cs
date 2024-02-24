@@ -13,6 +13,7 @@ public class MovimientoPersonaje : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     public Animator animator;
+    bool chafado = false;
 
     [SerializeField] Rigidbody2D rb;
     [SerializeField] Transform colisionesSuelo;
@@ -21,6 +22,7 @@ public class MovimientoPersonaje : MonoBehaviour
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        
         //animator = GetComponent<Animator>();
     }
 
@@ -61,7 +63,36 @@ public class MovimientoPersonaje : MonoBehaviour
 
     private bool tocandoSuelo()
     {
-        return Physics2D.OverlapCircle(colisionesSuelo.position, 0.2f, mascaraSuelo);
+        //return Physics2D.OverlapCircle(colisionesSuelo.position, 0.2f, mascaraSuelo);
+        return Physics2D.OverlapBox(colisionesSuelo.position, new Vector2(0.95f, 0.1f),
+            0, mascaraSuelo);
+    }
+
+    public void impulsarSalto(float fuerzaSalto)
+    {
+        rb.velocity = new Vector2(movX * velocidad, 0f);
+        rb.AddForce(new Vector2(0f, fuerzaSalto), ForceMode2D.Impulse);
+        
+        saltando = true;
+    }
+
+
+    public void chafar()
+    {
+        chafado = true;
+        animator.SetLayerWeight(0, 0f);
+        animator.SetLayerWeight(1, 1f);
+    }
+    
+    /*public void deschafar()
+    {
+        animator.SetLayerWeight(0, 1f);
+        animator.SetLayerWeight(1, 0f);
+    }*/
+
+    public void animarDanio()
+    {
+        chafar();
     }
 
     private void comprobarCambioLado()
@@ -91,5 +122,11 @@ public class MovimientoPersonaje : MonoBehaviour
         animator.SetBool("Saltando", saltando);
     }
 
-    
+    /*private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("EnemigoSalto"))
+        {
+            impulsarSalto(5f);
+        }
+    }*/
 }

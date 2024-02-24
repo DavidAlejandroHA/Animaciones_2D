@@ -32,9 +32,32 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public void paralizarTiempo()
+    {
+        Time.timeScale = 0f;
+    }
+    public void renaudarTiempo()
+    {
+        Time.timeScale = 0f;
+    }
+
     public void terminarJuego()
     {
         Time.timeScale = 0f;
         UIManager.Instance.mostrarPantallaPerder();
+    }
+
+    public void pausarJuego()
+    {
+        Time.timeScale = 0f;
+    }
+
+    public void renaudarJuego()
+    {
+        Time.timeScale = 1f;
+    }
+    public void renaudarJuego(float delay)
+    {
+        Invoke("renaudarJuego", delay);
     }
 }
